@@ -1,13 +1,12 @@
-(ns mywebapp.test.handler
+(ns mywebapp.test.views
   (:use clojure.test
         ring.mock.request  
-        mywebapp.handler))
+        mywebapp.routes))
 
 (deftest test-app
-  (testing "main route"
+  (testing "main app"
     (let [response (app (request :get "/"))]
-      (is (= (:status response) 200))
-      (is (= (:body response) "Hello World"))))
+      (is (= (:status response) 200))))
   
   (testing "not-found route"
     (let [response (app (request :get "/invalid"))]
