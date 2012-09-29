@@ -7,9 +7,9 @@
 
 (defroutes app-routes
   (GET "/" [] (index-page))
-  (GET "/second-page" [] (second-page))
+  (GET "/about" [] (about-page))
   (route/resources "/")
-  (route/not-found "DENIED"))
+  (route/not-found "No page"))
 
 
 (def app

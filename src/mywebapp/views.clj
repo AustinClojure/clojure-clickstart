@@ -9,7 +9,7 @@
      [:div.nav-collapse.collapse
       [:ul.nav
        [:li.active [:a {:href "/"} "Home"]]
-       [:li.active [:a {:href "/second-page"} "Page Two"]]]]]]])
+       [:li.active [:a {:href "/about"} "About"]]]]]]])
 
 (defn template [& body]
   (html5
@@ -26,9 +26,14 @@
 (defn index-page []
   (template
    [:h2 "Index"]
-   [:p "Using " [:b "ring"] "/" [:b "compojure"] "/" [:b "hiccup"]]
+
    [:div [:a {:href "http://wiki.cloudbees.com/bin/view/Main/"} "Get help with Cloudbees."]]))
 
-(defn second-page []
+(defn about-page []
   (template
-   [:h2 "Page Two"]))
+   [:h2 "About"]
+   [:p "This Clojure clickstart was developed by members of the "
+    [:a {:href "http://www.meetup.com/Austin-Clojure-Meetup/"} "Austin Clojure Meetup"]
+    ".  You can find us as "
+    [:a {:href "https://github.com/AustinClojure"} "AustinClojure on github"]
+    "."]))
