@@ -7,6 +7,7 @@
 
 (defroutes app-routes
   (GET "/" [] (index-page))
+  (GET "/second-page" [] (second-page))
   (route/resources "/")
   (route/not-found "DENIED"))
 
