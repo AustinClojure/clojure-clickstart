@@ -1,4 +1,2 @@
-clojure-clickstart
-==================
+cloudbees clickstart template
 
-cloudbees clickstart
