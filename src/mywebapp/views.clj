@@ -25,15 +25,21 @@
 
 (defn index-page []
   (template
-   [:h2 "Index"]
-
-   [:div [:a {:href "http://wiki.cloudbees.com/bin/view/Main/"} "Get help with Cloudbees."]]))
+   
+   [:div {:class "hero-unit"}
+    [:h1 "Clojure on Cloudbees"]
+    [:p "Welcome to the Clojure Clickstart!"]
+    [:p
+     [:a {:class "btn btn-primary btn-large"
+          :href "http://wiki.cloudbees.com/bin/view/Main/"}
+      "Get help with Cloudbees."]]]))
 
 (defn about-page []
   (template
-   [:h2 "About"]
-   [:p "This Clojure clickstart was developed by members of the "
-    [:a {:href "http://www.meetup.com/Austin-Clojure-Meetup/"} "Austin Clojure Meetup"]
-    ".  You can find us as "
-    [:a {:href "https://github.com/AustinClojure"} "AustinClojure on github"]
-    "."]))
+   [:div {:class "well"}
+    [:h1 "About"]
+    [:p "This Clojure clickstart was developed by members of the "
+     [:a {:href "http://www.meetup.com/Austin-Clojure-Meetup/"} "Austin Clojure Meetup"]
+     ".  You can find us as "
+     [:a {:href "https://github.com/AustinClojure"} "AustinClojure on github"]
+     "."]]))
