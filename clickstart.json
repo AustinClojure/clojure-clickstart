@@ -1,8 +1,8 @@
 {
     "id": "clojure-clickstart",
     "name": "Clojure/Compojure ClickStart",
-    "source": "git://github.com/AustinClojure/clojure-clickstart.git",
-    "description" : "This is an example of a Compjure app deployable on CloudBees",
+    "source": "git://github.com/CloudBees-community/clojure-clickstart.git",
+    "description" : "This is an example of a Compjure app deployable on CloudBees with Jenkins",
     "doc-url" : "https://github.com/AustinClojure/clojure-clickstart/blob/master/README.md",
     "icon" : "https://raw.github.com/AustinClojure/clojure-clickstart/master/icon.png",
     "runtime": {
