@@ -8,18 +8,12 @@ Launch this clickstart and glory could be yours too ! Use it as a building block
 
 You can launch this on Cloudbees via a clickstart automatically, or follow the instructions below. 
 
-# Running locally: 
-
-install leiningen (version 2 - latest)
-clone this repo
-
-lein deps
-lein ring server
 
 # Deploying manually: 
 
 Use the lein-cloudbees plugin as per https://clojars.org/lein-cloudbees
 
+    lein cloudbees deploy
 
 ## Prerequisites
 
