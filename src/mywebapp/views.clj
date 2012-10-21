@@ -1,11 +1,13 @@
 (ns mywebapp.views
   (:use [hiccup core page]))
 
+(defonce counter (atom 1))
+
 (defn header []
   [:div.navbar.navbar-inverse.navbar-fixed-top
    [:div.navbar-inner
     [:div.container
-     [:a.brand {:href "/"} "Cloudbees Clickstart"]
+     [:a.brand {:href "/"} "Cloudbees Clickstart[" @counter "]"]
      [:div.nav-collapse.collapse
       [:ul.nav
        [:li.active [:a {:href "/"} "Home"]]
