@@ -1,16 +1,17 @@
 (ns mywebapp.views
-  (:use [hiccup core page]))
+  (:use [hiccup core page]
+        [mywebapp.repl :as repl]))
 
-(defonce counter (atom 1))
 
 (defn header []
   [:div.navbar.navbar-inverse.navbar-fixed-top
    [:div.navbar-inner
     [:div.container
-     [:a.brand {:href "/"} "Cloudbees Clickstart[" @counter "]"]
+     [:a.brand {:href "/"} "Cloudbees Clickstart"]
      [:div.nav-collapse.collapse
       [:ul.nav
        [:li.active [:a {:href "/"} "Home"]]
+       [:li.active [:a {:href "/repl"} "REPL"]]
        [:li.active [:a {:href "/about"} "About"]]]]]]])
 
 (defn template [& body]
@@ -66,4 +67,31 @@
       "Read about what ClickStarts are "
      [:a {:href "https://developer.cloudbees.com/bin/view/RUN/ClickStart"} "at CloudBees"]
 
-     ]))
+    ]))
+
+
+(defn repl-page []
+  (template
+      [:div {:class "well"}
+       [:h1 "REPL "
+        (if (repl/secret-set?)
+          "CONFIGURED"
+          "NOT CONFIGURED")]
+       
+       [:p "This app demonstrates using the clojure repl to interact with a live server. If repl access is not configured, you'll need to activate it by setting the repl secret. "]
+
+       [:ul
+        [:li [:b "cloudbees"] " - "
+         "bees config:set account/appname replsecret=SECRET"]
+        [:li [:b "local"] " - "
+         "JAVA_OPTS=\"-Dreplsecret=SECRET\" lein ring server"]]
+
+       
+       [:p "To connect to your repl, use lein repl:"]
+
+       [:ul
+        [:li [:b "cloudbees"] " - "
+         "lein repl :connect http://CLOUDBEESHOST/repl/SECRET"]
+        
+        [:li [:b "local"] " - "
+         "lein repl :connect http://localhost:3000/repl/SECRET"]]]))
