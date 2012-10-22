@@ -1,24 +1,34 @@
 (ns mywebapp.routes
   (:use compojure.core
-        mywebapp.views)
+        mywebapp.views
+        mywebapp.repl)
   (:require [compojure.handler :as handler]
             [compojure.route :as route]
             [cemerick.drawbridge]))
 
 (defroutes app-routes
   (GET "/" [] (index-page))
+  (GET "/repl" [] (repl-page))
   (GET "/about" [] (about-page))
-  (route/resources "/")  
+  (route/resources "/"))
 
-  (if-let [secret (System/getProperty "magicword")]
+
+(defn repl-handler [request guess]
+  (if (secret-set?)
+    (if (test-secret guess)
+      ((cemerick.drawbridge/ring-handler) request)
+      (route/not-found "secret does not match replsecret"))
     
-    (let [nrepl-handler (cemerick.drawbridge/ring-handler)]
-      (ANY (str "/repl/" secret) request (nrepl-handler request)))
-    
-    (route/not-found "No page"))
-  
+    (route/not-found "replsecret not set. use bees config:set {account/appname} replsecret={SECRET}")))
+
+(defroutes repl-routes
+  (ANY "/repl/:guess" [guess :as request] 
+       (repl-handler request guess)))
+
+(defroutes all-routes
+  app-routes
+  repl-routes
   (route/not-found "No page"))
 
-
 (def app
-  (handler/site app-routes))
+  (handler/site all-routes))
